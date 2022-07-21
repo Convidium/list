@@ -1,0 +1,205 @@
+#list {
+    display: flex;
+    flex-direction: column;
+    margin: 0 2% 0 2%;
+    border: 1px solid rgba(128, 128, 128, 0.438);
+}
+
+#list-header {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(70, 70, 70);
+    color: rgb(243, 243, 243);
+    height: 60px;
+}
+
+#records {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#list-header div {
+    border-right: 1px solid grey;
+}
+
+.check-column,
+.id-column,
+.name-column,
+.email-column,
+.phone-number-column,
+.country-column,
+.state-column,
+.gender-column,
+.edit-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px dotted grey;
+}
+
+.records-client {
+    display: flex;
+    flex-grow: 2;
+    border-top: 1px solid grey;
+    height: 35px;
+}
+
+.select-action {
+    display: flex;
+    margin: 1% 2% 1%;
+    height: 60%;
+    border: none;
+    border-bottom: 1px solid rgb(148, 148, 148);
+}
+
+#add-new-record {
+    display: flex;
+    margin: 1%;
+}
+
+.action-menu {
+    display: flex;
+    margin-left:1%;
+    margin-right: 1%;
+}
+
+.fieldset {
+    display: flex;
+    flex-direction: column;
+}
+
+.fieldset div {
+    margin-top: 5%;
+}
+
+.error {
+    color: rgb(224, 120, 51);
+    margin-left: 2%;
+}
+
+.ui-widget-header {
+    background-color: rgb(70, 70, 70) !important;
+    color: rgb(243, 243, 243) !important;
+}
+
+.btn-submit {
+    background-color: rgb(224, 120, 51) !important;
+    color: rgb(243, 243, 243) !important;
+}
+
+.editable {
+    display: none;
+    width: 100%;
+    border: none;
+    text-align: center;
+}
+
+.uneditable {
+    display: block;
+}
+
+.btn-focus:focus,
+.editable:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.edit-btn,
+.delete-btn,
+.move-btn {
+    height: 90%;
+    width: 60%;
+    align-items: center;
+    padding: none !important;
+    border: none;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.edit-btn:hover,
+.move-btn:hover,
+.icon-edit:hover {
+    color: rgb(224, 120, 51);
+}
+
+.delete-btn:hover {
+    color: rgb(170, 0, 0);
+}
+
+.word-edit {
+    display: block;
+}
+
+.icon-edit {
+    display: none;
+    height: 90%;
+    width: 60%;
+    align-items: center;
+    padding: none !important;
+    border: none;
+    background-color: transparent;
+}
+
+.blink_me {
+    animation: blinker 2s ease infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+.action-menu-second {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1%;
+}
+
+.action-menu-second > div, button {
+    display: flex;
+    margin-left: 1%;
+    margin-right: 1%;
+
+}
+
+.action-menu-first{
+    display: flex;
+    align-items: center;
+}
+
+.col-12{
+    width: auto !important;
+}
+
+.page-val{
+    margin-left: 20%;
+}
+
+.filter-select, .step-select{
+    margin-right: 2%;
+    height: 60%;
+    border: none;
+    border-bottom: 1px solid rgb(148, 148, 148);
+}
+
+.filter-select:focus,.filter-input:focus,.step-select:focus,.select-action:focus{
+    outline: none;
+}
+
+.filter-input{
+    display: none;
+    margin-right: 1%;
+    height: 60%;
+    border: none;
+    border-bottom: 1px solid rgb(148, 148, 148);
+}
+
+.no-results{
+    color: rgb(148, 148, 148);
+    font-size: 150%;
+    display: none;
+    justify-content: center;
+}
