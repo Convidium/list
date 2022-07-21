@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+        integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.2/underscore-min.js"
+        integrity="sha512-anTuWy6G+usqNI0z/BduDtGWMZLGieuJffU89wUU7zwY/JhmDzFrfIZFA3PY7CEX4qxmn3QXRoXysk6NBh5muQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/d7ccf7825e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
+        integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+        integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="action-menu col-12">
+        <div class="action-menu-first col-6">
+            <select class="select-action">
+                <option value="ok">Done</option>
+                <option disabled selected>Select option</option>
+                <option value="1">Edit records</option>
+                <option value="2">Delete records</option>
+                <option value="3">Change location</option>
+                <option value="4">Reset</option>
+            </select>
+            <button class="btn btn-submit" id="add-new-record">Add Record</button>
+        </div>
+
+
+        <div class="action-menu-second col-6">
+            <select class="filter-select" data-bind="event: { change: filterNone }">
+                <option value="none">None</option>
+                <option value="id">by ID</option>
+                <option value="name">by Name</option>
+                <option value="country">by Country</option>
+                <option value="city">by City</option>
+                <option value="gender">by Gender</option>
+            </select>
+            <input id="id" class="filter-id filter-input" data-bind="event: { keyup: filter }">
+            <input id="name" class="filter-name filter-input" placeholder="Name" data-bind="event: { keyup: filter }">
+            <input id="country" class="filter-country filter-input" placeholder="Country" data-bind="event: { keyup: filter}">
+            <input id="state" class="filter-city filter-input" placeholder="City" data-bind="event: { keyup: filter }">
+            <input id="gender" class="filter-gender filter-input" placeholder="Gender" data-bind="event: { keyup: filter }">
+            <select class="step-select" data-bind="event: { change: changePageLength }">
+                <option selected value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+            </select>
+            <button class="btn btn-light decrease" data-bind="click: decrease"><i class="fa-solid fa-angle-left"></i></button>
+            <div class="page-amount input-part"><input class="input-page" disabled value="1"></div>
+            <div class="page-amount"> of <div class="page-val">1</div></div>
+            <button class="btn btn-light increase" data-bind="click: increase"><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+    </div>
+
+    <div id="list">
+        <div id="list-header">
+            <div class="check-column col-1">
+                <input id="checkAll" type="checkbox">
+            </div>
+            <div class="id-column col-1">
+                ID
+            </div>
+            <div class="name-column col-2">
+                Name
+            </div>
+            <div class="email-column col-2">
+                Email
+            </div>
+            <div class="phone-number-column col-2">
+                Phone
+            </div>
+            <div class="country-column col-1">
+                Country
+            </div>
+            <div class="state-column col-1">
+                State/Province
+            </div>
+            <div class="gender-column col-1">
+                Gender
+            </div>
+            <div class="edit-column col-1">
+                Action
+            </div>
+        </div>
+        <div id="records" data-bind="foreach: visibleRecords">
+            <div class="records-client">
+                <div class="check-column col-1">
+                    <input class="check" type="checkbox">
+                </div>
+                <div class="id-column col-1">
+                    <div data-bind="text: id"></div>
+                </div>
+                <div class="name-column col-2">
+                    <div class="uneditable" data-bind="text: name"></div>
+                    <input class="editable" data-bind="textInput: name">
+
+                </div>
+                <div class="email-column col-2">
+                    <div class="uneditable" data-bind="text: email"></div>
+                    <input class="editable" data-bind="textInput: email">
+                </div>
+
+                <div class="phone-number-column col-2">
+                    <div class="uneditable" data-bind="text: phone"></div>
+                    <input class="editable" data-bind="textInput: phone">
+                </div>
+
+                <div class="country-column col-1">
+                    <div class="uneditable" data-bind="text: country"></div>
+                    <input class="editable" data-bind="textInput: country">
+                </div>
+
+                <div class="state-column col-1">
+                    <div class="uneditable" data-bind="text: state"></div>
+                    <input class="editable" data-bind="textInput: state">
+                </div>
+
+                <div class="gender-column col-1">
+                    <div class="uneditable gender-text" data-bind="text: gender"></div>
+                    <select name="gender" id="gender" value="none"
+                        class="text ui-widget-content ui-corner-all gender-edit editable">
+                        <option selected value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="action-div edit-column col-1">
+                    <div>...</div>
+                </div>
+
+            </div>
+            
+
+        </div>
+        
+        <div id="dialog" title="Add a record">
+            <div id="dialog-form">
+                <p class="validateTips">All form fields are required.</p>
+
+                <form id="add-record-form">
+                    <fieldset class="fieldset">
+                        <div>
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" placeholder="Arthur Brown"
+                                class="text ui-widget-content ui-corner-all">
+                        </div>
+
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email" placeholder="youremail@gmail.com"
+                                class="text ui-widget-content ui-corner-all">
+                        </div>
+
+                        <div>
+                            <label for="phoneNumber">Phone Number</label>
+                            <input name="phoneNumber" id="phone-number" placeholder="+380123456789"
+                                class="text ui-widget-content ui-corner-all">
+                        </div>
+
+                        <div>
+                            <label for="country">Country</label>
+                            <input name="country" id="country" placeholder="Ukraine"
+                                class="text ui-widget-content ui-corner-all">
+                        </div>
+
+                        <div>
+                            <label for="state">State</label>
+                            <input name="state" id="state" placeholder="Kyiv"
+                                class="text ui-widget-content ui-corner-all">
+                        </div>
+
+                        <div>
+                            <label for="gender">Gender</label>
+                            <select name="gender" id="gender" value="none" class="text ui-widget-content ui-corner-all">
+                                <option disabled selected>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="no-results">No Results Found</div>
+
+    <script src="script/list.js"></script>
+    <script src="script/dialog-form.js"></script>
+    <script src="script/add-new-record.js"></script>
+    <script src="script/manipulate-records.js"></script>
+    <script src="script/pages.js"></script>
+</body>
+
+</html>
